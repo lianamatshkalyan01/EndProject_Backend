@@ -23,7 +23,7 @@ function post_cartItems(req, res){
     const {cart_id, product_id}=req.body
     Cartitems.create({cart_id, product_id})
     .then((cartitems)=>{
-        res.status(201).json(cart)
+        res.status(201).json(cartitems)
     }).catch((err)=>{
         res.status(500).json({error:err.message})
     })
