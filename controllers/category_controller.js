@@ -1,8 +1,8 @@
-const {UnderCategories, Categories} = require('../models')
+const {UnderCategories, Categories, Products} = require('../models')
 const fs = require('fs')
 
 function get_Category(req, res){
-    Categories.findAll()
+    Categories.findAll({include: UnderCategories})
     .then((category)=>{
         res.json(category)}).catch((err)=>{
             res.status(500).json({error:err.message})
@@ -11,7 +11,7 @@ function get_Category(req, res){
 
 function get_Category_id(req,res){
     const {id}=req.params
-    Categories.findOne({where:{id}
+    Categories.findOne({include: UnderCategories, where:{id}
     })
     .then((category)=>{
         res.json(category)}).catch((err)=>{

@@ -1,17 +1,15 @@
 const {Products, UnderCategories} = require('../models')
 const fs = require('fs')
 
-function get_product(req,res){
-    const {limit, offset} = req.query
-    Products.count().then((count)=>{
-        Products.findAll({limit, offset},{include: UnderCategories})
-        .then((product)=>{
-        res.json({product, count})
-    }).catch((err)=>{
-            res.status(500).json({error:err.message})
-        })
-})
-    }
+function get_product(req, res){
+    Products.findAll({include: UnderCategories})
+    .then((product)=>{
+                res.json(product)
+            }).catch((err)=>{
+                    res.status(500).json({error:err.message})
+                })
+            }
+
 
 function get_product_id(req, res){
     const {id}=req.params
@@ -33,6 +31,7 @@ async function post_product(req, res){
         data.img = imgUrl;
         return res.status(201).json({ message: 'Product created', data });
 }
+
 
 async function update_product(req, res) {
     try {
