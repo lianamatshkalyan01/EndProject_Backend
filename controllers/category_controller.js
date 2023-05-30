@@ -21,7 +21,7 @@ function get_Category_id(req,res){
 
 async function post_Category(req,res){
     const {name} = req.body
-    const img = `uploads/categories/${req.file.filename}`;
+    const img = `uploadsCategories/${req.file.filename}`;
     const data = await Categories.create({name, img})
     const imgUrl = `${req.protocol}://${req.hostname}:5000/${img}`;
     console.log(imgUrl)
@@ -33,10 +33,10 @@ async function update_Category(req,res){
     try{
         const {id}=req.params
         const {name} = req.body
-        const img = `uploads/categories/${req.file.filename}`;
-        const oldData = await Products.findOne({where:{id}})
+        const img = `uploadsCategories/${req.file.filename}`;
+        const oldData = await Categories.findOne({where:{id}})
         const filepath = "_" + oldData.img
-        FileSystem.unlink(filepath, (err)=>{
+        fs.unlink(filepath, (err)=>{
             if(err){
                 console.log(err)
             }
@@ -45,13 +45,12 @@ async function update_Category(req,res){
         const imgUrl = `${req.protocol}://${req.hostname}:5000/${img}`;
             console.log(imgUrl)
             data.img = imgUrl;
-        return res.status(201).json({ message: 'Category updated', data });
-    } catch (err){
+         res.status(201).json({ message: 'Category updated', data });
+    } catch (error){
         console.error('Error updating category:', error);
          res.status(500).json({ message: 'Error updating category' });
     }     
 }
-
 
 function delete_Category(req,res){
     const {id}=req.params

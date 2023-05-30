@@ -3,26 +3,23 @@ const fs = require('fs')
 
 const storage = multer.diskStorage({
     destination: (req, file, cb)=>{
-       if (!fs.existsSync(__dirname + '/../_uploads')) {
-            fs.mkdirSync(__dirname + '/../_uploads');
+        if (!fs.existsSync(__dirname + '/../_uploadsProducts')) {
+            fs.mkdirSync(__dirname + '/../_uploadsProducts');
         }
-        if (!fs.existsSync(__dirname + '/../_uploads/products')) {
-            fs.mkdirSync(__dirname + '/../_uploads/products');
-        }
-        if (!fs.existsSync(__dirname + '/../_uploads/categories')) {
-            fs.mkdirSync(__dirname + '/../_uploads/categories');
+        if (!fs.existsSync(__dirname + '/../_uploadsCategories')) {
+            fs.mkdirSync(__dirname + '/../_uploadsCategories');
         }
         if (req.method === 'POST') {
-            cb(null, __dirname + '/../_uploads/products')
+            cb(null, __dirname + '/../_uploadsProducts')
         }
         if (req.method === 'POST') {
-            cb(null, __dirname + '/../_uploads/categories')
+            cb(null, __dirname + '/../_uploadsCategories')
         }
         if (req.method === 'PUT') {
-            cb(null, __dirname + '/../_uploads/products')
+            cb(null, __dirname + '/../_uploadsProducts')
         }
         if (req.method === 'PUT') {
-            cb(null, __dirname + '/../_uploads/categories')
+            cb(null, __dirname + '/../_uploadsCategories')
         }
     },
     filename:(req, file, cb)=>{

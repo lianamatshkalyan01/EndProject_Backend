@@ -23,7 +23,7 @@ function get_product_id(req, res){
 
 async function post_product(req, res){
     const{name, price, type, pack_quantity, dosage, composition, side_effect, instruction, storage_condition, undercategories_id} =req.body
-    const img = `uploads/products/${req.file.filename}`;
+    const img = `uploadsProducts/${req.file.filename}`;
     const data = await Products.create({name, price, type, pack_quantity, img, dosage, composition, side_effect, instruction, storage_condition, undercategories_id})
     
     const imgUrl = `${req.protocol}://${req.hostname}:5000/${img}`;
@@ -37,7 +37,7 @@ async function update_product(req, res) {
     try {
       const { id } = req.params;
       const { name, price, type, pack_quantity, dosage, composition, side_effect, instruction, storage_condition, undercategories_id } = req.body;
-      const img = `uploads/products/${req.file.filename}`;
+      const img = `uploadsProducts/${req.file.filename}`;
 
       const oldData = await Products.findOne({where:{id}})
       const filepath = "_" + oldData.img

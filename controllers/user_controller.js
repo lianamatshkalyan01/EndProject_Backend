@@ -71,7 +71,7 @@ async function user_register(req, res) {
       const hashed_password = await bcrypt.hash(password, salt);
     
       if (first_name !== "" && last_name !== "" && email !== "" && password !== "") {
-        const data = await Users.create({ first_name, last_name, email, password: hashed_password, role:"admin", is_verified:0});
+        const data = await Users.create({ first_name, last_name, email, password: hashed_password, role:"user", is_verified:0});
         let token = generateAccessToken(email, 0)
         send_mail(email, token)
         return res.status(201).json(data);
