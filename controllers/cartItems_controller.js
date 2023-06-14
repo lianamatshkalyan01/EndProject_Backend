@@ -47,7 +47,7 @@ async function post_cartAndcartitems(req, res) {
         cartItem.quantity += quantity;
         await cartItem.save();
       }
-      res.status(200).json({ message: 'Cart and cart item created successfully' });
+      res.json({ message: 'Cart and cart item created successfully' });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Error creating cart and cart item' });
@@ -55,27 +55,81 @@ async function post_cartAndcartitems(req, res) {
   }
 
 
-function update_cartItems(req, res){
-    const {cart_id, product_id}=req.body
+async function update_cartItems(req, res){
+    const {cart_id, product_id, quantity}=req.body
     const {id}=req.params
-    Cartitems.update({cart_id:cart_id, product_id:product_id}, {where:{id:id}})
-    .then((cartitems)=>{
-        res.status(201).json(cartitems)
-    }).catch((err)=>{
-        res.status(500).json({error:err.message})
-    })
+    try{
+        const cartItem = await Cartitems.findByPk(id)
+        if(cartItem){
+            cartItem.cart_id = cart_id
+            cartItem.product_id = product_id
+            cartItem.quantity = quantity
+            await cartItem.save()
+                res.json(cartItem)
+         } else{
+            res.status(404).json({error:'CartItem not found'})
+         }
+    }catch(error){
+        req.status(500).json({error:error.message})
+    }
 }
 
-function delete_cartItems(req, res){
+async function delete_cartItems(req, res){
     const {id}=req.params
-    Cartitems.destroy({wher:{id}})
-    .then((cartitems)=>{
-        res.status(201).json(cartitems)
-    }).catch((err)=>{
-        res.status(500).json({error:err.message})
-    })
+    try{
+        const cartItem = await Cartitems.findOne({where:{product_id:id}})
+        if(cartItem ){
+            await Cartitems.destroy({where:{product_id:id}})
+            res.json({message: "Cart item deleted successfully"})
+        } else{
+            res.status(404).json({error:"Cart item not found"})
+        }
+    } catch(error){
+        res.status(500).json({error:error.message})
+    }
 }
+
+async function incrementCartItem(req, res){
+    const {id} = req.params
+    const {quantity} = req.body
+    try{
+        const cartItem = await Cartitems.findOne({where:{product_id:id}})
+        if(!cartItem){
+            return res.status(400).json({error:'CartItem not found'})
+        } 
+        if(cartItem.quantity > 0){
+            await Cartitems.update({quantity:cartItem.quantity + quantity}, {where:{product_id:id}})
+            const updatedCartitems = await Cartitems.findOne({where:{product_id:id}})
+            res.json({cartItem: updatedCartitems})
+        }else{
+            res.json({cartItem})
+        }
+    } catch(error){
+        res.status(500).json({error:error.message})
+    }
+}
+
+async function decrementCartItem(req, res){
+    const {id}=req.params
+    const {quantity} = req.body
+    try{
+        const cartItem = await Cartitems.findOne({where:{product_id:id}})
+        if(!cartItem){
+            return res.status(400).json({error:"CartItem not found"})
+        }
+        if(cartItem.quantity > 1){
+            await Cartitems.update({quantity:cartItem.quantity - quantity}, {where:{product_id:id}})
+            const updatedCartitems = await Cartitems.findOne({where:{product_id:id}})
+            res.json({cartItem:updatedCartitems})
+        } else{
+            res.json({cartItem})
+        }
+    } catch(error){
+        res.status(500).json({error:error.message})
+    }
+}
+
 
 module.exports={
-    get_cartItems, get_cartItems_id,  post_cartAndcartitems, update_cartItems, delete_cartItems
+    get_cartItems, get_cartItems_id,  post_cartAndcartitems, update_cartItems, delete_cartItems, incrementCartItem, decrementCartItem
 }
