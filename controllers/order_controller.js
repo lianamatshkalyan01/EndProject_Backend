@@ -3,25 +3,13 @@ const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 const stripe = require('stripe')(stripeSecretKey);
 
 const setupStripe = async (
-  email,
-  product_id,
-  product_name,
-  price,
+  line_items,
   baseUrl,
-  encryptedString
 ) => {
   return await stripe.checkout.sessions.create({
-    line_items:[{
-      price_data:{
-        currency: "usd",
-        product_data: {
-          name: product_name},
-        unit_amount: Number((price * 100).toFixed(2))
-      },
-      quantity: 1
-    }],
+    line_items,
     mode:"payment",
-    success_url: `${baseUrl}/api/package/afterPayment/${encryptedString}`,
+    success_url: `${baseUrl}/user`,
     cancel_url: `${baseUrl}`,
   });
 };
@@ -48,28 +36,35 @@ function get_order_id(req, res) {
 }
 
 async function post_order(req, res) {
-  const { Cartitems } = req.body;
-  console.log(Cartitems, '555555555555555555555555555555555')
+  const { cartItems } = req.body;
+  console.log(cartItems, '555555555555555555555555555555555')
 
-  const stripeData = {
-    email: "liana.matshkalyan01@gmail.com",
-    product_id: 36,
-    product_name: "Azithromycin",
-    price: 5000,
-    baseUrl: "http://localhost:5000",
-    encryptedString: "LLL",
-  };
+  const line_items = cartItems.map((item)=>{
+    return {
+      price_data:{
+        currency:"usd",
+        product_data:{
+          name:item.Product.name,
+          // Images: [
+          //   item.Product.img
+          // ],
+          metadata:{
+            product_id: item.product_id
+          }
+        },
+        unit_amount: Number((item.Product.price * 100).toFixed(2))
+      },
+      quantity: item.quantity
+    }
+  })
+
 
   console.log('Stripe Secret Key:', stripeSecretKey);
 
   try {
     const session = await setupStripe(
-      stripeData.email,
-      stripeData.product_id,
-      stripeData.product_name,
-      stripeData.price,
-      stripeData.baseUrl,
-      stripeData.encryptedString
+      line_items,
+      "http://localhost:5173"
     );
 
     console.log(session)

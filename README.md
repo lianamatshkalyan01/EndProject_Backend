@@ -24,51 +24,6 @@ This project was built to help you start E-commerce for Pharmacy - backend with 
 * Stripe
 * Multer
 
-## Project Structure
-
-├── config
-│   └── config.json                              # Configuration file for the database connection
-├── controllers
-│   ├── userController.js                        # Handles CRUD operations for user resources
-│   ├── categoryController.js                    # Handles CRUD operations for category resources
-│   ├── underCategoryController.js               # Handles CRUD operations for underCategory resources
-│   ├── productController.js                     # Handles CRUD operations for product resources
-│   ├── cartController.js                        # Handles CRUD operations for cart resources
-│   ├── cartItemsController.js                   # Handles CRUD operations for cartItems resources
-│   └── orderController.js                       # Handles CRUD operations for order resources
-├── middleware
-│   ├── jwtAuthenticate.js                       # Middleware for verifying JWT tokens and user authentication
-│   ├── jwtGenerate.js                           # Creating a JWT token
-│   └── uploads.js                               # Middleware for Images
-├── models
-│   ├── user.js                                  # User model schema and database interactions
-│   ├── category.js                              # Category model schema and database interactions
-│   ├── undercategory.js                         # Undercategory model schema and database interactions
-│   ├── product.js                               # Product model schema and database interactions
-│   ├── cart.js                                  # Cart model schema and database interactions
-│   ├── cartItems.js                             # Cartitems model schema and database interactions
-│   ├── order.js                                 # Order model schema and database interactions
-│   └── index.js                                 # Common structure for loading and initializing Sequelize models in a Node.js.
-├── routes
-│   ├── userRoutes.js                            # Routes for user resources
-│   ├── categoryRoutes.js                        # Routes for category resources
-│   ├── underCategoryRoutes.js                   # Routes for underCategory resources
-│   ├── productRoutes.js                         # Routes for product resources
-│   ├── cartRoutes.js                            # Routes for cart resource
-│   ├── cartItemsRoutes.js                       # Routes for cartItems resource
-│   └── orderRoutes.js                           # Routes for order resource
-├── migrations
-│   ├── ..data..create-users.js                  # Migration for user model 
-│   ├── ..data..create-category.js               # Migration for category model 
-│   ├── ..data..create-undercategory.js          # Migration for underCategory model 
-│   ├── ..data..create-product.js                # Migration for product model 
-│   ├── ..data..create-cart.js                   # Migration for cart model 
-│   ├── ..data..create-cartitems.js              # Migration for cartitems model
-│   └── ..data..create-order.js                  # Migration for order model 
-├── -uploads
-│   ├── category                                 # Downloaded Images of categories
-│   └── product                                  # Downloaded Images of products
-└── server.js                                    # Entry point for the backend server
 
 ### Installing
 
