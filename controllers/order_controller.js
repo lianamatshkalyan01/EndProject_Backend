@@ -9,7 +9,7 @@ const setupStripe = async (
   return await stripe.checkout.sessions.create({
     line_items,
     mode:"payment",
-    success_url: `${baseUrl}/user`,
+    success_url: `${baseUrl}/payment`,
     cancel_url: `${baseUrl}`,
   });
 };

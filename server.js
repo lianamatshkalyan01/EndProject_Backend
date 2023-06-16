@@ -14,12 +14,6 @@ const cartitems_router = require('./routes/cartItems_routes')
 const users_router = require('./routes/user_routes')
 const order_router = require('./routes/order_routes')
 
-const corsOptions = {
-    origin: 'http://localhost:5173' 
-  };
-  
-  app.use(cors(corsOptions));
-
 app.use('/cat',category_router)
 app.use('/under',underCategory_router)
 app.use('/prod', product_router)
