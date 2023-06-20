@@ -45,9 +45,9 @@ async function post_order(req, res) {
         currency:"usd",
         product_data:{
           name:item.Product.name,
-          // Images: [
-          //   item.Product.img
-          // ],
+          images: [
+            item.Product.imgURL
+          ],
           metadata:{
             product_id: item.product_id
           }

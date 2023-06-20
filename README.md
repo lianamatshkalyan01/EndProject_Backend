@@ -1,8 +1,8 @@
-# E-commerce for Pharmacy - backend
+# E-commerce for Pharmacy
 
 ## Description
 
-This project was built to help you start E-commerce for Pharmacy - backend with a boilerplate which is fully ready for most of the basic back end tasks such as authorization, authentication, email confirmation and CRUD
+This project was meticulously developed to provide a comprehensive solution for starting an E-commerce platform specifically tailored for a pharmacy. It seamlessly combines a fully functional backend with an intuitive frontend/User interface. The backend boilerplate encompasses essential features such as authorization, authentication, email confirmation, and CRUD operations, while the frontend boilerplate is optimized for tasks like user authentication, product purchasing, and order placement. With this project, you can easily kickstart your pharmacy's E-commerce operations and efficiently manage all crucial aspects of the platform.
 
 ## Features
 
@@ -23,12 +23,28 @@ This project was built to help you start E-commerce for Pharmacy - backend with 
 * Nodemailer
 * Stripe
 * Multer
-
+* React
+* vite
+* Redux Toolkit
+* React-router-dom
+* TypeScript
+* Ant Design 
+* CSS
+* MUI
 
 ### Installing
 
 ```
 git clone https://github.com/lianamatshkalyan01/EndProject_Backend.git
+npm install
+```
+```
+git clone https://github.com/lianamatshkalyan01/EndProjectUser.git
+cd vite-project
+npm install
+```
+```
+git clone https://github.com/lianamatshkalyan01/EndProjectAdmin.git
 npm install
 ```
 
@@ -61,6 +77,13 @@ TOKEN_SECRET="yourrandomlygeneratedsecret"
 ```
 nodemon server.js
 ```
+```
+npm run dev
+```
+```
+npm start
+```
+Backend
 * Register via http://localhost:5000/user/register with firstname, lastname, email and password in the body as JSON format via Postman or any alternatives
 * If successful, you should get a verification email
 * Email link should look like this -  http://localhost:5000/user/verify/token
@@ -73,3 +96,22 @@ nodemon server.js
 * From there you can edit the app based on your needs
 * If you want to seed your post database with some random information, run node post_seed.js in the seeds folder, click "y" to delete all previous recrods or anything else to just add data without deleting anything
 
+Frontend-User
+* Navigate to the registration page and fill in the required information, including your first name, last name, email, and password.
+* Upon successful registration, you will receive a verification email.
+* The verification email will contain a link in the following format: http://localhost:5000/user/verify/token.
+* Clicking on the link will confirm your username by changing the "confirmed" field to true and display a confirmation message in the   response.
+* Proceed to the login page and enter the same email and password used during registration.
+* If the login details are correct, you will be redirected to the user interface.
+* Browse through the available products and select the ones you prefer. Add them to your cart.
+* Enter the payment card details to proceed with the purchase. 
+* Once the payment is successfully processed, your order will be confirmed.
+
+Frontend-Admin
+* Navigate to the registration page and fill in the required information, including your first name, last name, email, and password.
+* Upon successful registration, you will receive a verification email.
+* The verification email will contain a link in the following format: http://localhost:5000/user/verify/token.
+* Clicking on the link will confirm your username by changing the "confirmed" field to true and display a confirmation message in the   response.
+* Proceed to the login page and enter the same email and password used during registration.
+* If the login details are correct, you will be redirected to the admin interface.
+* Once logged in, you can proceed with the CRUD operations to create, update, and delete categories, undercategories and products as needed

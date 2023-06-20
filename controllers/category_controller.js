@@ -21,7 +21,7 @@ function get_Category_id(req,res){
 
 async function post_Category(req,res){
     const {name} = req.body
-    const img = `uploads/categories/${req.file.filename}`;
+    const img = `uploads/${req.file.filename}`;
     const data = await Categories.create({name, img})
     const imgUrl = `${req.protocol}://${req.hostname}:5000/${img}`;
     console.log(imgUrl)
@@ -33,7 +33,7 @@ async function update_Category(req,res){
     try{
         const {id}=req.params
         const {name} = req.body
-        const img = `uploads/categories/${req.file.filename}`;
+        const img = `uploads/${req.file.filename}`;
         const oldData = await Categories.findOne({where:{id}})
         const filepath = "_" + oldData.img
         fs.unlink(filepath, (err)=>{

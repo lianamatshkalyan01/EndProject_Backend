@@ -6,7 +6,7 @@ const upload = require('../middleware/upload')
 
 category_router.get('/categories', Categories.get_Category)
 category_router.get('/:id', Categories.get_Category_id)
-category_router.post('/new', jwt_authenticate.authenticateToken, upload.single('img'), Categories.post_Category)
+category_router.post('/new', upload.single('img'), Categories.post_Category)
 category_router.put('/update/:id', jwt_authenticate.authenticateToken, upload.single('img'), Categories.update_Category)
 category_router.delete('/delete/:id', jwt_authenticate.authenticateToken, Categories.delete_Category)
 
