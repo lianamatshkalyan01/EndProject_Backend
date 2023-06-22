@@ -2,24 +2,101 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
+  up: async (queryInterface, Sequelize) => { 
+    await queryInterface.bulkInsert('Products', [ 
+      { 
+      name: 'Azitromicin',
+      price: 4180,
+      type: 'Capsules',
+      pack_quantity: 6,
+      img: 'uploads/Azitromicin.png',
+      dosage: '500 mg',
+      composition: 'This medicine should be taken as directed by the doctor and in doses and duration as prescribed. It can be taken with or without food.',
+      side_effect: 'Chest pain, abnormal heart rate, low blood pressure, abnormal heart rhythm with QT prolongation and torsades de pointes.',
+      instruction: "Follow your doctor's instructions exactly. It is not allowed to change the dose or stop treatment without consulting your doctor.",
+      storage_condition: 'Store it in room temperature and in an airtight container. Keep away from children and pets.',
+      undercategories_id: 3,
+      createdAt: new Date(), 
+      updatedAt: new Date(), 
+    }, 
+    { 
+      name: 'Bactrim',
+      price: 5020,
+      type: 'Pill',
+      pack_quantity: 10,
+      img: 'uploads/Bactrim.jpeg',
+      dosage: '960 mg',
+      composition: 'This medicine should be taken as directed by the doctor and in doses and duration as prescribed. It can be taken with or without food.',
+      side_effect: 'Chest pain, abnormal heart rate, low blood pressure, abnormal heart rhythm with QT prolongation and torsades de pointes.',
+      instruction: "Follow your doctor's instructions exactly. It is not allowed to change the dose or stop treatment without consulting your doctor.",
+      storage_condition: 'Store it in room temperature and in an airtight container. Keep away from children and pets.',
+      undercategories_id: 3,
+      createdAt: new Date(), 
+      updatedAt: new Date(), 
+    }, 
+    { 
+      name: 'Amoksiklav',
+      price: 3620,
+      type: 'Pill',
+      pack_quantity: 14,
+      img: 'uploads/Amoksiklav.jpg',
+      dosage: '1000 mg',
+      composition: 'This medicine should be taken as directed by the doctor and in doses and duration as prescribed. It can be taken with or without food.',
+      side_effect: 'Chest pain, abnormal heart rate, low blood pressure, abnormal heart rhythm with QT prolongation and torsades de pointes.',
+      instruction: "Follow your doctor's instructions exactly. It is not allowed to change the dose or stop treatment without consulting your doctor.",
+      storage_condition: 'Store it in room temperature and in an airtight container. Keep away from children and pets.',
+      undercategories_id: 3,
+      createdAt: new Date(), 
+      updatedAt: new Date(), 
+    }, 
+    { 
+      name: 'Azimak',
+      price: 2880,
+      type: 'Capsules',
+      pack_quantity: 6,
+      img: 'uploads/Azimak.jpeg',
+      dosage: '250 mg',
+      composition: 'This medicine should be taken as directed by the doctor and in doses and duration as prescribed. It can be taken with or without food.',
+      side_effect: 'Chest pain, abnormal heart rate, low blood pressure, abnormal heart rhythm with QT prolongation and torsades de pointes.',
+      instruction: "Follow your doctor's instructions exactly. It is not allowed to change the dose or stop treatment without consulting your doctor.",
+      storage_condition: 'Store it in room temperature and in an airtight container. Keep away from children and pets.',
+      undercategories_id: 3,
+      createdAt: new Date(), 
+      updatedAt: new Date(), 
+    }, 
+    { 
+      name: 'Azibiot',
+      price: 1790,
+      type: 'Pill',
+      pack_quantity: 3,
+      img: 'uploads/Azibiot.jpeg',
+      dosage: '500 mg',
+      composition: 'This medicine should be taken as directed by the doctor and in doses and duration as prescribed. It can be taken with or without food.',
+      side_effect: 'Chest pain, abnormal heart rate, low blood pressure, abnormal heart rhythm with QT prolongation and torsades de pointes.',
+      instruction: "Follow your doctor's instructions exactly. It is not allowed to change the dose or stop treatment without consulting your doctor.",
+      storage_condition: 'Store it in room temperature and in an airtight container. Keep away from children and pets.',
+      undercategories_id: 3,
+      createdAt: new Date(), 
+      updatedAt: new Date(), 
+    }, 
+    { 
+      name: 'Azitroks',
+      price: 2660,
+      type: 'Capsules',
+      pack_quantity: 6,
+      img: 'uploads/Azitroks.jpeg',
+      dosage: '250 mg',
+      composition: 'This medicine should be taken as directed by the doctor and in doses and duration as prescribed. It can be taken with or without food.',
+      side_effect: 'Chest pain, abnormal heart rate, low blood pressure, abnormal heart rhythm with QT prolongation and torsades de pointes.',
+      instruction: "Follow your doctor's instructions exactly. It is not allowed to change the dose or stop treatment without consulting your doctor.",
+      storage_condition: 'Store it in room temperature and in an airtight container. Keep away from children and pets.',
+      undercategories_id: 3,
+      createdAt: new Date(), 
+      updatedAt: new Date(), 
+    },  
+  ], {}); 
   },
 
-  async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
-  }
-};
+  down: async (queryInterface, Sequelize) => { 
+    await queryInterface.bulkDelete('Products', null, {}); 
+  } };

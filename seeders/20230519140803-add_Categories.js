@@ -2,24 +2,41 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
+  up: async (queryInterface, Sequelize) => { 
+    await queryInterface.bulkInsert('Categories', [ 
+      { 
+      name: 'Herbs',
+      img: 'uploads/categories/Herbs.png',
+      createdAt: new Date(), 
+      updatedAt: new Date(), 
+    }, 
+    { 
+      name: 'Optics',
+      img: 'uploads/categories/Optics.png', 
+      createdAt: new Date(), 
+      updatedAt: new Date(), 
+    }, 
+    { 
+      name: 'VitaminC',
+      img: 'uploads/categories/Vitaminpng.png',
+      createdAt: new Date(), 
+      updatedAt: new Date(), 
+    },
+    { 
+      name: 'MotherChild',
+      img: 'uploads/MotherChild.png',
+      createdAt: new Date(), 
+      updatedAt: new Date(), 
+    },
+    { 
+      name: 'Medical Supplies',
+      img: 'uploads/categories/Medical.png',
+      createdAt: new Date(), 
+      updatedAt: new Date(), 
+    },
+  ], {}); 
   },
 
-  async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
-  }
-};
+  down: async (queryInterface, Sequelize) => { 
+    await queryInterface.bulkDelete('Categories', null, {}); 
+  } };
